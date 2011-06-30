@@ -1,2 +1,0 @@
-recursive-include oxford *
-global-exclude *pyc
