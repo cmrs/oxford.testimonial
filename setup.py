@@ -12,7 +12,25 @@ def read(*rnames):
 version = open(os.path.join("oxford", "testimonial", "version.txt")).read().strip()
 
 long_description = (
-    open(os.path.join("docs", "README.txt")).read().strip())
+    read(os.path.join('docs', 'README.txt'))
+    + '\n' +
+    'Installing\n'
+    '**************\n'
+    + '\n' +
+    read(os.path.join('docs', 'INSTALL.txt'))
+    + '\n' +
+    'History\n'
+    '**********************\n'
+    + '\n' +
+    read(os.path.join('docs', 'HISTORY.txt'))
+    + '\n' +
+    'Contributors\n'
+    '************\n'
+    + '\n' +
+    read(os.path.join('docs', 'CONTRIBUTORS.txt'))
+    + '\n' +
+    'Download\n'
+    '********\n')
 
 tests_require = ['zope.testing']
 
