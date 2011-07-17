@@ -1,3 +1,4 @@
+import time
 import unittest2 as unittest
 
 from zope.component import getSiteManager
@@ -32,4 +33,9 @@ class TestReinstall(unittest.TestCase):
 
     def testReinstall(self):
         portal_setup = getToolByName(self.portal, 'portal_setup')
-        portal_setup.runAllImportStepsFromProfile('profile-oxford.testimonial:default')
+        try:
+            portal_setup.runAllImportStepsFromProfile('profile-oxford.testimonial:default')
+        except BadRequest:
+            # if tests run too fast, duplicate profile import id makes test fail
+            time.sleep(0.5)
+            portal_setup.runAllImportStepsFromProfile('profile-oxford.testimonial:default')
