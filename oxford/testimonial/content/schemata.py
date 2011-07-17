@@ -24,17 +24,16 @@ TestimonialSchema = ATContentTypeSchema.copy() + Schema((
         primary = True,
         storage = AnnotationStorage(migrate=True),
         validators = ('isTidyHtmlWithCleanup',),
-        #validators = ('isTidyHtml',),
         default_output_type = 'text/x-html-safe',
         widget = RichWidget(
             description = '',
-            label = _(u'label_body_text', u'Body Text'),
+            label = 'Testimonial Text',
             rows = 25,
             allow_file_upload = zconf.ATDocument.allow_document_upload)
         ),
 
     ImageField(
-        name='featureImage',
+        name='testimionialImage',
         languageIndependent=True,
         storage=AnnotationStorage(),
         swallowResizeExceptions=zconf.swallowImageResizeExceptions.enable,
@@ -53,11 +52,9 @@ TestimonialSchema = ATContentTypeSchema.copy() + Schema((
         validators=(('isNonEmptyFile', V_REQUIRED),
                     ('checkImageMaxSize', V_REQUIRED)),
         widget=ImageWidget(
-            label='Feature Image',
-            label_msgid='KebleContent_label_featureImage',
-            description='The feature image that appears in the bottom right corner of the home page. Please upload an image with the following dimensions: width 465px, height: variable.',
-            description_msgid='KebleContent_help_featureImage',
-            i18n_domain='KebleContent',
+            label='Testimonial Image',
+            description="""The testimonial image associated with this testimonial.""",
+            i18n_domain='oxford.testimonial',
             show_content_type = False,
         ),
     ),
