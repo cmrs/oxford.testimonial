@@ -1,20 +1,42 @@
 from plone.app.folder.folder import ATFolderSchema
 
-from Products.Archetypes import atapi
+from Products.Archetypes.atapi import AnnotationStorage
+from Products.Archetypes.atapi import ImageField
+from Products.Archetypes.atapi import ImageWidget
+from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import TextField
+from Products.ATContentTypes import ATCTMessageFactory as _
 from Products.ATContentTypes.configuration import zconf
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema
+from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.validation import V_REQUIRED
 
-TestimonialFolderSchema = ATFolderSchema.copy() + atapi.Schema((
+TestimonialFolderSchema = ATFolderSchema.copy() + Schema((
 
 ))
 
-TestimonialSchema = ATContentTypeSchema.copy() + atapi.Schema((
+TestimonialSchema = ATContentTypeSchema.copy() + Schema((
 
-    atapi.ImageField(
+    TextField('text',
+        required = False,
+        searchable = True,
+        primary = True,
+        storage = AnnotationStorage(migrate=True),
+        validators = ('isTidyHtmlWithCleanup',),
+        #validators = ('isTidyHtml',),
+        default_output_type = 'text/x-html-safe',
+        widget = RichWidget(
+            description = '',
+            label = _(u'label_body_text', u'Body Text'),
+            rows = 25,
+            allow_file_upload = zconf.ATDocument.allow_document_upload)
+        ),
+
+    ImageField(
         name='featureImage',
         languageIndependent=True,
-        storage=atapi.AnnotationStorage(),
+        storage=AnnotationStorage(),
         swallowResizeExceptions=zconf.swallowImageResizeExceptions.enable,
         pil_quality=zconf.pil_config.quality,
         pil_resize_algo=zconf.pil_config.resize_algo,
@@ -30,7 +52,7 @@ TestimonialSchema = ATContentTypeSchema.copy() + atapi.Schema((
         },
         validators=(('isNonEmptyFile', V_REQUIRED),
                     ('checkImageMaxSize', V_REQUIRED)),
-        widget=atapi.ImageWidget(
+        widget=ImageWidget(
             label='Feature Image',
             label_msgid='KebleContent_label_featureImage',
             description='The feature image that appears in the bottom right corner of the home page. Please upload an image with the following dimensions: width 465px, height: variable.',
@@ -41,3 +63,5 @@ TestimonialSchema = ATContentTypeSchema.copy() + atapi.Schema((
     ),
 
 ))
+
+finalizeATCTSchema(TestimonialSchema)
