@@ -4,6 +4,7 @@ from Products.Archetypes.atapi import AnnotationStorage
 from Products.Archetypes.atapi import ImageField
 from Products.Archetypes.atapi import ImageWidget
 from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import StringWidget
 from Products.Archetypes.atapi import Schema
 from Products.Archetypes.atapi import TextField
 from Products.ATContentTypes import ATCTMessageFactory as _
@@ -28,6 +29,17 @@ TestimonialSchema = ATContentTypeSchema.copy() + Schema((
         widget = RichWidget(
             description = '',
             label = 'Testimonial Text',
+            rows = 25,
+            allow_file_upload = zconf.ATDocument.allow_document_upload)
+        ),
+
+    TextField('studentName',
+        required = False,
+        searchable = True,
+        storage = AnnotationStorage(migrate=True),
+        widget = StringWidget(
+            description = """The name of the student appears at the bottom of the testimonial""",
+            label = 'Student Name',
             rows = 25,
             allow_file_upload = zconf.ATDocument.allow_document_upload)
         ),
