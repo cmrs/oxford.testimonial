@@ -1,10 +1,20 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="oxford.testimonial">
 
-  <include package="plone.app.contentmenu" />
+    <include package="plone.app.contentmenu" />
 
-  <!-- -*- extra stuff goes here -*- -->
+    <include package="plone.app.portlets"/>
+
+    <plone:portlet
+        name="oxford.testimonial.browser.portlet"
+        interface="oxford.testimonial.interfaces.ITestimonialPortlet"
+        assignment=".portlet.Assignment"
+        renderer=".portlet.Renderer"
+        addview=".portlet.AddForm"
+        editview=".portlet.EditForm"
+        />
 
 </configure>
