@@ -1,12 +1,18 @@
-from zope.schema import Int
+<dl tal:attributes="class string:portlet portletStaticText portletGrey"
+    i18n:domain="plone">
 
-from plone.portlets.interfaces import IPortletDataProvider
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span class="portletTopRight"></span>
+    </dt>
 
-from Products.CMFPlone import PloneMessageFactory as _
+    <dd class="portletItem">
+        blah
+    </dd>
 
-class ITestimonialPortlet(IPortletDataProvider):
+    <dd class="portletFooter">
+        <span class="portletBotomLeft"></span>
+        <span class="portletBottomRight"></span>
+    </dd>
 
-    interval = Int(title=_(u'Change Interval'),
-                       description=_(u'Number of seconds between testimonial changes.'),
-                       required=True,
-                       default=10)
+</dl>
