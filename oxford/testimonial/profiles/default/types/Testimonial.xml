@@ -5,15 +5,14 @@
         i18n:domain="plone">
  <property name="title" i18n:translate="">Testimonial</property>
  <property name="description" i18n:translate=""></property>
- <property name="content_icon">folder_icon.gif</property>
+ <property name="content_icon">document_icon.gif</property>
  <property name="content_meta_type">Testimonial</property>
  <property name="product">oxford.testimonial</property>
  <property name="factory">addTestimonial</property>
  <property name="immediate_view">base_view</property>
- <property name="global_allow">True</property>
+ <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-  <element value="Testimonial"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">base_view</property>
