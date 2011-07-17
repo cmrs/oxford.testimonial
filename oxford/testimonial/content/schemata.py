@@ -64,4 +64,6 @@ TestimonialSchema = ATContentTypeSchema.copy() + Schema((
 
 ))
 
+TestimonialSchema['description'].widget.visible = False
+
 finalizeATCTSchema(TestimonialSchema)

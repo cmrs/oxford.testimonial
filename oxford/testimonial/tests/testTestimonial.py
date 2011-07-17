@@ -21,3 +21,10 @@ class TestContentType(unittest.TestCase):
         tf1 = getattr(self.portal, 'tf1')
         tf1.invokeFactory('Testimonial', 't1')
         assert 't1' in tf1.objectIds()
+
+    def testDescriptionField(self):
+        self.testAddType()
+        tf1 = getattr(self.portal, 'tf1')
+        t1 = getattr(tf1, 't1')
+        t1.setText('Some sample text')
+        assert t1.Description() == 'Some sample text', t1.Description()
