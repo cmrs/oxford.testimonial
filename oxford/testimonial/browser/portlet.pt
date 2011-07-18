@@ -1,17 +1,22 @@
 <dl tal:attributes="class string:portlet portletStaticText portletGrey"
+    tal:define="testimonial view/getRandomTestimonial"
+    tal:condition="testimonial"
     i18n:domain="plone">
 
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
+        <span tal:content="testimonial/Title" />
         <span class="portletTopRight"></span>
     </dt>
 
     <dd class="portletItem">
-        blah
+        <img tal:replace="structure testimonial/tag" />
+        <span tal:content="structure testimonial/getText" />
     </dd>
 
     <dd class="portletFooter">
-        <span class="portletBotomLeft"></span>
+        <span class="portletBotomLeft"
+            tal:content="testimonial/getStudentName" />
         <span class="portletBottomRight"></span>
     </dd>
 

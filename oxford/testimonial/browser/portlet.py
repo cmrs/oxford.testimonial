@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from random import choice
 from zope.component import getMultiAdapter
 from zope.formlib import form
 from zope.interface import implements
@@ -6,6 +7,7 @@ from zope.interface import implements
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 
 from oxford.testimonial.interfaces import ITestimonialPortlet
@@ -52,3 +54,16 @@ class Renderer(base.Renderer):
 
     def render(self):
         return self._template()
+
+    def getRandomTestimonial(self):
+        """Returns a random testimonial object"""
+        portal_catalog = getToolByName(self.context, 'portal_catalog')
+        folder = portal_catalog(portal_type='TestimonialFolder')
+        if not folder:
+            return
+        folder = folder[0].getObject()
+        testimonials = folder.getFolderContents({'portal_type':'Testimonial',})
+        if not testimonials:
+            return
+        random_testimonial = choice(testimonials).getObject()
+        return random_testimonial

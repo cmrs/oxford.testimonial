@@ -40,4 +40,14 @@ class Testimonial(ATNewsItem):
             description = description[:150] + '...'
         return description
 
+    security.declareProtected(permissions.View, 'tag')
+    def tag(self, **kwargs):
+        """Generate image tag using the api of the ImageField
+        """
+        if 'title' not in kwargs:
+            kwargs['title'] = self.getStudentName()
+        if 'scale' not in kwargs:
+            kwargs['scale'] = 'thumb'
+        return self.getField('testimionialImage').tag(self, **kwargs)
+
 registerType(Testimonial, PROJECTNAME)
