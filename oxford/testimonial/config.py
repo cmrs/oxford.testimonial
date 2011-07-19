@@ -5,5 +5,5 @@ PROJECTNAME = 'oxford.testimonial'
 
 ADD_PERMISSIONS = {
     'TestimonialFolder': 'OxfordTestimonial: Add TestimonialFolder',
-    'Testimonial': 'OxfordTestimonial: Add OxfordTestimonial',
+    'Testimonial': 'OxfordTestimonial: Add Testimonial',
 }
