@@ -9,15 +9,15 @@
  <property name="content_meta_type">Testimonial</property>
  <property name="product">oxford.testimonial</property>
  <property name="factory">addTestimonial</property>
- <property name="immediate_view">base_view</property>
+ <property name="immediate_view">testimonial_view</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
  </property>
  <property name="allow_discussion">False</property>
- <property name="default_view">base_view</property>
+ <property name="default_view">testimonial_view</property>
  <property name="view_methods">
-  <element value="base_view"/>
+  <element value="testimonial_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>

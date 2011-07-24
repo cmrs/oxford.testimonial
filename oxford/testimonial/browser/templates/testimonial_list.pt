@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmrs.academic">
+<body>
+
+    <metal:main fill-slot="main">
+        <tal:main-macro metal:define-macro="main"
+            tal:define="academics view/getAcademics">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 class="documentFirstHeading">
+            <span metal:use-macro="python:context.widget('title', mode='view')" />
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <div class="documentDescription">
+            <span metal:use-macro="python:context.widget('description', mode='view')" />
+        </div>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <div tal:repeat="academic academics">
+            <div tal:condition="academic/getAcademicPortrait"
+                 style="float: left; margin-right: 1em;">
+                <img tal:replace="structure python:academic.tag(scale='icon')" />
+            </div>
+            <div class="academic-list"
+                 tal:condition="not:academic/getText"
+                 tal:content="academic/Title" />
+            <div class="academic-list"
+                 tal:condition="academic/getText">
+                <a tal:attributes="href academic/absolute_url"
+                   tal:content="academic/Title" />
+            </div>
+            <div class="academic-list"
+                 tal:content="academic/getJobTitle" />
+            <div class="visualClear">&nbsp;</div>
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+        </tal:main-macro>
+    </metal:main>
+</body>
+</html>

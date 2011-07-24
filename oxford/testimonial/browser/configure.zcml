@@ -17,4 +17,20 @@
         editview=".portlet.EditForm"
         />
 
+  <browser:page
+      name="testimonial_list"
+      for="oxford.testimonial.interfaces.testimonialfolder.ITestimonialFolder"
+      class=".testimonialfolder.TestimonialFolderView"
+      template="templates/testimonial_list.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="testimonial_view"
+      for="oxford.testimonial.interfaces.testimonial.ITestimonial"
+      class=".testimonial.TestimonialView"
+      template="templates/testimonial_view.pt"
+      permission="zope2.View"
+      />
+
 </configure>
