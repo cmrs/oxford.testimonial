@@ -13,6 +13,7 @@ from Products.Five.browser import BrowserView as View
 from oxford.testimonial.interfaces.testimonial import ITestimonial
 
 from base import OXFORD_TESTIMONIAL_INTEGRATION_TESTING
+from utils import HAMLET_SPEECH
 
 class TestContentType(unittest.TestCase):
     """Ensure product is properly installed"""
@@ -62,3 +63,26 @@ class TestView(unittest.TestCase):
         view = view.__of__(tf1)
         testimonials = view.getTestimonials()
         assert len(testimonials) == 1
+
+class TestView(unittest.TestCase):
+    """Test the view for testimonial content type"""
+    layer = OXFORD_TESTIMONIAL_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('TestimonialFolder', 'tf1')
+        self.tf1 = getattr(self.portal, 'tf1')
+        self.tf1.invokeFactory('Testimonial', 't1')
+        self.t1 = getattr(self.tf1, 't1')
+
+    def testShortenText(self):
+        """Text should split on a space after 350 chars
+        """
+        t1 = self.t1
+        t1.setText(HAMLET_SPEECH)
+        # the rich field inserts html
+        start_text = "<p>To be, or not to be: that is the question:<br />"
+        end_text = "<br />That flesh is"
+        assert t1.getTestimonial()[:51] == start_text
+        assert t1.getTestimonial()[-19:] == end_text

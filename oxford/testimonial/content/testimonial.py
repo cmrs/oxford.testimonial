@@ -50,4 +50,21 @@ class Testimonial(ATNewsItem):
             kwargs['scale'] = 'thumb'
         return self.getField('testimionialImage').tag(self, **kwargs)
 
+    security.declareProtected(permissions.View, 'getTestimonial')
+    def getTestimonial(self, **kwargs):
+        """Shorten the text if too long
+        """
+        # not used because spaces can be in html tags
+        # there also would not a be a close p tag
+        # method needs to be made html aware which is not easy
+        text = self.getText()
+        if len(text) < 350:
+            return text
+        position = 0
+        for char in text:
+            if char == ' ':
+                if position > 350:
+                    return text[:position]
+            position += 1
+
 registerType(Testimonial, PROJECTNAME)
