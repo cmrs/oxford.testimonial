@@ -7,7 +7,6 @@ from zope.interface import implements
 from plone.app.portlets.portlets import base
 from plone.memoize.instance import memoize
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 
 from oxford.testimonial.interfaces import ITestimonialPortlet
@@ -57,8 +56,7 @@ class Renderer(base.Renderer):
 
     def getRandomTestimonial(self):
         """Returns a random testimonial object"""
-        portal_catalog = getToolByName(self.context, 'portal_catalog')
-        folder = portal_catalog(portal_type='TestimonialFolder')
+        folder = self.catalog(portal_type='TestimonialFolder')
         if not folder:
             return
         folder = folder[0].getObject()
