@@ -3,10 +3,10 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="cmrs.academic">
 <body>
-
+    <metal:override fill-slot="column_two_slot" />
     <metal:main fill-slot="main">
         <tal:main-macro metal:define-macro="main"
-            tal:define="academics view/getAcademics">
+            tal:define="testimonials view/getTestimonials">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -22,21 +22,16 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div tal:repeat="academic academics">
-            <div tal:condition="academic/getAcademicPortrait"
+        <div tal:repeat="testimonial testimonials">
+            <div tal:condition="testimonial/getTestimionialImage"
                  style="float: left; margin-right: 1em;">
-                <img tal:replace="structure python:academic.tag(scale='icon')" />
+                <img tal:replace="structure python:testimonial.tag(scale='icon')" />
             </div>
-            <div class="academic-list"
-                 tal:condition="not:academic/getText"
-                 tal:content="academic/Title" />
-            <div class="academic-list"
-                 tal:condition="academic/getText">
-                <a tal:attributes="href academic/absolute_url"
-                   tal:content="academic/Title" />
+            <div class="testimonial-list"
+                 tal:condition="testimonial/getText">
+                <a tal:attributes="href testimonial/absolute_url"
+                   tal:content="testimonial/Title" />
             </div>
-            <div class="academic-list"
-                 tal:content="academic/getJobTitle" />
             <div class="visualClear">&nbsp;</div>
         </div>
 

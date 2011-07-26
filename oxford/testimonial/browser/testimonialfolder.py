@@ -12,6 +12,6 @@ class TestimonialFolderView(BrowserView):
     def getTestimonials(self):
         """Return the testimonials as objects
         """
-        academics = self.context.getFolderContents(contentFilter={'portal_type':'Testimonial',},
+        testimonials = self.context.getFolderContents(contentFilter={'portal_type':'Testimonial',},
                                                    full_objects=True)
-        return academics
+        return testimonials
