@@ -3,7 +3,7 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="cmrs.academic">
 <body>
-
+    <metal:override fill-slot="column_two_slot" />
     <metal:main fill-slot="main">
         <tal:main-macro metal:define-macro="main">
 
