@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+ <object name="navtree_properties" meta_type="Plone Property Sheet">
+  <property name="metaTypesNotToList" type="lines" purge="False">
+   <element value="Testimonial"/>
+  </property>
+</object>
