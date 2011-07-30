@@ -6,9 +6,9 @@
     
   <genericsetup:registerProfile
       name="default"
-      title="Testimonial"
+      title="Oxford Testimonial"
       directory="profiles/default"
-      description="Storage mechanism for testomials"
+      description="Testimonials for Oxford University sites"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
