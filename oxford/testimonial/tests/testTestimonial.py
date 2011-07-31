@@ -46,15 +46,15 @@ class TestView(unittest.TestCase):
         self.portal.invokeFactory('TestimonialFolder', 'tf1')
         self.tf1 = getattr(self.portal, 'tf1')
 
-    def testGetAcademicsReturnsNone(self):
-        """Should return empty list if no academics
+    def testGetTestimonialsReturnsNone(self):
+        """Should return empty list if no testimonials
         """
         tf1 = self.tf1
         view = getMultiAdapter((aq_inner(tf1), self.portal.REQUEST), name='testimonial_list')
         view = view.__of__(tf1)
         assert view.getTestimonials() == []
 
-    def testGetAcademicsReturnNone(self):
+    def testGetTestimonialsReturnNone(self):
         """Should return list of one item
         """
         tf1 = self.tf1
