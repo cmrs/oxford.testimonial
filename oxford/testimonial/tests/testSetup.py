@@ -25,6 +25,10 @@ class TestInstallation(unittest.TestCase):
         assert 'TestimonialFolder' in portal_types.objectIds(), portal_types.objectIds()
         assert 'Testimonial' in portal_types.objectIds(), portal_types.objectIds()
 
+    def testPortalFactorySetup(self):
+        assert 'Testimonial' in self.portal.portal_factory.getFactoryTypes()
+        assert 'TestimonialFolder' in self.portal.portal_factory.getFactoryTypes()
+
 class TestReinstall(unittest.TestCase):
     """Ensure product can be reinstalled safely"""
     layer = OXFORD_TESTIMONIAL_INTEGRATION_TESTING
