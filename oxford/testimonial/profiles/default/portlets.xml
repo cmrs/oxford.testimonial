@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <portlets
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="plone">
+    i18n:domain="oxford.testimonial">
   <portlet 
     addview="oxford.testimonial.browser.portlet"
-    title="Tetimonial Carousel"
+    title="Testimonial Carousel"
     description="A portlet to display a carousel of testimonials."
     i18n:attributes="title title_testimonial_portlet;
                      description description_testimonial_portlet">
