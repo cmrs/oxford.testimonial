@@ -32,8 +32,6 @@ long_description = (
     'Download\n'
     '********\n')
 
-tests_require = ['zope.testing']
-
 setup(name='oxford.testimonial',
       version=version,
       description="Storage mechanism for testomials",
@@ -54,10 +52,17 @@ setup(name='oxford.testimonial',
       namespace_packages=['oxford', ],
       include_package_data=True,
       zip_safe=False,
-      install_requires=['setuptools',
-                        # -*- Extra requirements: -*-
-                        ],
-      tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
-      test_suite='oxford.testimonial.tests.test_docs.test_suite',
-      )
+      install_requires=[
+          'setuptools',
+      ],
+      extras_require = {
+          'test': [
+              'plone.app.testing',
+          ]
+      },
+      entry_points="""
+      # -*- Entry points: -*-
+      [z3c.autoinclude.plugin]
+      target = plone
+      """,
+)
