@@ -29,6 +29,10 @@ class TestInstallation(unittest.TestCase):
         assert 'Testimonial' in self.portal.portal_factory.getFactoryTypes()
         assert 'TestimonialFolder' in self.portal.portal_factory.getFactoryTypes()
 
+    def testNavtreePropertiesConfigured(self):
+        pmntq = self.portal.portal_properties.navtree_properties.metaTypesNotToList
+        assert 'Testimonial' in pmntq
+
 class TestReinstall(unittest.TestCase):
     """Ensure product can be reinstalled safely"""
     layer = OXFORD_TESTIMONIAL_INTEGRATION_TESTING
