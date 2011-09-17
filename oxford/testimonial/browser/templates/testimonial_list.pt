@@ -25,13 +25,15 @@
         <div tal:repeat="testimonial testimonials">
             <div tal:condition="testimonial/getTestimionialImage"
                  style="float: left; margin-right: 1em;">
-                <img tal:replace="structure python:testimonial.tag(scale='icon')" />
+                <img tal:replace="structure python:testimonial.tag(scale='tile')" />
             </div>
             <div class="testimonial-list"
                  tal:condition="testimonial/getText">
                 <a tal:attributes="href testimonial/absolute_url"
                    tal:content="testimonial/Title" />
             </div>
+            <div class="testimonial-list"
+                 tal:content="testimonial/Description" />
             <div class="visualClear">&nbsp;</div>
         </div>
 
