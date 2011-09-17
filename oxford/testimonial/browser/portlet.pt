@@ -13,7 +13,18 @@
         <div style="text-align: center;" tal:condition="testimonial/getTestimionialImage">
             <img tal:replace="structure testimonial/tag" />
         </div>
-        <span tal:content="structure testimonial/getText" />
+        <div tal:define="text testimonial/getText">
+            <span tal:condition="python:len(text) <= 150"
+                  tal:content="structure testimonial/getText" />
+            <span tal:condition="python:len(text) > 150"
+                  tal:content="structure testimonial/Description" />
+            <div tal:condition="python:len(text) > 150"
+                 style="text-align: right;">
+                 <a tal:attributes="href testimonial/absolute_url">
+                     Read more ...
+                 </a>
+            </div>
+        </div>
     </dd>
 
     <dd class="portletFooter">
