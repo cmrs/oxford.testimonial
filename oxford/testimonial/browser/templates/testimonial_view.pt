@@ -15,19 +15,12 @@
 
         <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-        <div class="documentDescription">
-            <span metal:use-macro="python:context.widget('description', mode='view')" />
-        </div>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
         <div tal:condition="context/getTestimionialImage"
-             style="float: left; margin-right: 1em;">
+             style="float: right; margin-left: 1em;">
             <img tal:replace="structure context/tag" />
         </div>
         <div tal:content="structure context/getText" />
-
-        <div tal:replace="structure provider:plone.belowcontentbody" />
+        <div tal:content="context/getStudentName" />
 
         </tal:main-macro>
     </metal:main>
