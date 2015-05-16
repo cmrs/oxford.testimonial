@@ -9,9 +9,12 @@
         <span class="portletTopRight"></span>
     </dt>
 
-    <dd class="portletItem">
+    <dd class="portletItem"
+        tal:define="testimonial_url testimonial/absolute_url">
         <div style="text-align: center;" tal:condition="testimonial/getTestimionialImage">
-            <img tal:replace="structure testimonial/tag" />
+            <a tal:attributes="href testimonial_url">
+                <img tal:replace="structure testimonial/tag" />
+            </a>
         </div>
         <div tal:define="text testimonial/getText">
             <span tal:condition="python:len(text) <= 150"
@@ -20,7 +23,7 @@
                   tal:content="structure testimonial/Description" />
             <div tal:condition="python:len(text) > 150"
                  style="text-align: right;">
-                 <a tal:attributes="href testimonial/absolute_url">
+                 <a tal:attributes="href testimonial_url">
                      Read more ...
                  </a>
             </div>
